@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "/home/Mr.Spector/Desktop/Todo-with-react/src/Todo/Todo.css"
+import "src/Todo/Todo.css"
 
 class Todo extends Component {
 
@@ -50,27 +50,30 @@ class Todo extends Component {
 
         if (this.state.isEditing) {
             result = (
-                <>
-                    <form onSubmit={this.handleUpdate}>
+                <div className="Todo">
+                    <form className="Todo-edit-form" onSubmit={this.handleUpdate}>
                         <input type="text" value={this.state.task} name="task" onChange={this.handleChange} />
                         <button>
                             Save
                         </button>
                     </form>
-                </>
+                </div>
             )
         } else {
             result = (
-                <div>
+                <div className="Todo">
+                    <li className={this.props.completed ? "Todo-task completed" : "Todo-task"}
+                    onClick={this.handleToggle}
+                    >{this.props.task}
+                    </li>
+                    <div className="Todo-buttons">
                     <button onClick={this.toggleForm}>
-                        edit
+                        <i class='fas fa-pen' />
                     </button>
                     <button onClick={this.handleRemove}>
-                        X
+                        <i class='fas fa-trash' />
                     </button>
-                    <li className={this.props.completed && "completed"}
-                    onClick={this.handleToggle}
-                    >{this.props.task}</li>
+                    </div>
 
                 </div>
             )
